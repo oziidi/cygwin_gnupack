@@ -1,0 +1,205 @@
+﻿==
+pv
+==
+
+Pipe Viewer - is a terminal-based tool for monitoring the progress 
+of data through a pipeline. It can be inserted into any normal 
+pipeline between two processes to give a visual indication of how 
+quickly data is passing through, how long it has taken, how near to 
+completion it is, and an estimate of how long it will be until 
+completion.
+
+Additional support is available for multiple instances working in 
+tandem, to given a visual indicator of relative throughput in a 
+complex pipeline
+
+See the man pages for a full list of features.
+	man pv
+
+Source homepage:    http://www.ivarch.com/programs/pv.shtml
+Source download:    http://www.ivarch.com/programs/sources/pv-1.4.12.tar.bz2
+Author:             Andrew Wood <andrew.wood@ivarch.com>
+Cygwin maintainer:	Aaron Schneider <cygwin@cygwin.com>
+License:            Artistic License 2.0; see COPYING for details.
+Version: 			x86 (32 bits)
+
+-------------------------------------------------------------------------
+
+Examples:
+
+ To simulate typing
+	echo "You can simulate on-screen typing just like in the movies" | pv -qL 10
+	
+ To view pipe transfer rate and size
+	wget -qO - http://www.kernel.org/pub/linux/kernel/v1.0/linux-1.0.tar.gz | pv | gzip -d | pv  > /dev/null
+	
+ Limit the transfer rate and size of data over a pipe (100 MB at 3MBps)
+	cat /dev/zero | pv -L 3m -Ss 100m > /dev/null
+	
+ More useful commands (URL)
+	http://www.commandlinefu.com/commands/matching/pv/cHY=/sort-by-votes
+
+-------------------------------------------------------------------------
+
+Runtime requirements:
+	cygwin
+	libintl8 
+	libiconv2
+	
+Build requirements:
+	binutils
+	gcc
+	gettext-devel
+	libiconv
+	make
+	readline
+	
+Build script additional requirements:
+	coreutils
+	findutils
+	cygport
+
+-------------------------------------------------------------------------
+
+Compile with cygport
+  cd /usr/src
+  tar -jxvf pv-1.4.12-1-src.tar.bz2
+	if you use setup to install this src package, it will be
+	unpacked under /usr/src automatically.
+  cygport pv-1.4.12-1.cygport all
+  
+This will create the following packages:
+	/usr/src/pv-1.4.12-1.tar.bz2
+	/usr/src/pv-1.4.12-1-src.tar.bz2
+	/usr/src/pv-debuginfo-1.4.12-1.tar.bz2
+
+Or use 'cygport pv-1.4.12-1.cygport prep' to create a patched source 
+directory.
+
+-------------------------------------------------------------------------
+
+Manual compiling (from author's source code)
+Extract, configure and build:
+  cd /usr/src
+  wget http://www.ivarch.com/programs/sources/pv-1.4.12.tar.bz2
+  tar -jxvf pv-1.4.12.tar.bz2
+  cd pv-1.4.12
+  ./configure
+  make
+	
+Install:  
+  make install
+	
+Uninstall:
+  make uninstall
+
+Clean the sources:
+  make clean
+
+When compiling from source doc folder is not installed.
+ 
+-------------------------------------------------------------------------
+
+Package creation (for the first time)
+	Based on http://cygwin.com/setup.html
+
+Download and extract original author's source code
+  cd /usr/src
+  wget http://www.ivarch.com/programs/sources/pv-1.4.12.tar.bz2
+  mkdir origsrc src
+  tar -jxf pv-1.4.12.tar.bz2 -C origsrc
+  tar -jxf pv-1.4.12.tar.bz2 -C src
+  mkdir -p ./src/pv-1.4.12/CYGWIN-PATCHES/
+  
+Create a README, a setup.hint and pv-1.4.12-1.cygport files in unix format
+  pv-1.4.12-1.cygport
+  src/pv-1.4.12/CYGWIN-PATCHES/setup.hint
+  src/pv-1.4.12/CYGWIN-PATCHES/README
+  
+Make any other change that you consider necessary to src folder contents
+
+Create a patch to compare origsrc and src folders
+  diff -Nrup origsrc src > pv-1.4.12-1.cygwin.patch
+  
+Add any other patches to PATCH_URI in cygport file. Collisions must be avoided.
+
+Create all the packages with cygport 
+  cygport pv-1.4.12-1.cygport all
+
+-------------------------------------------------------------------------
+
+Files included in the binary package:
+
+ usr/bin/pv.exe
+ usr/share/doc/Cygwin/pv.README
+ usr/share/doc/pv/README
+ usr/share/doc/pv/README.Cygwin
+ usr/share/locale/de/LC_MESSAGES/pv.mo
+ usr/share/locale/fr/LC_MESSAGES/pv.mo
+ usr/share/locale/pl/LC_MESSAGES/pv.mo
+ usr/share/locale/pt/LC_MESSAGES/pv.mo
+ usr/share/man/man1/pv.1.gz
+
+Files included in the source package:
+ 
+ pv-1.4.12-1.cygport
+ pv-1.4.12-1.cygwin.patch
+ pv-1.4.12.tar.bz2
+ 
+Files included in the debug package:
+ usr/lib/debug/usr/bin/pv.exe.dbg
+ usr/src/debug/pv-1.4.12-1/src/main/debug.c
+ usr/src/debug/pv-1.4.12-1/src/main/help.c
+ usr/src/debug/pv-1.4.12-1/src/main/main.c
+ usr/src/debug/pv-1.4.12-1/src/main/options.c
+ usr/src/debug/pv-1.4.12-1/src/main/remote.c
+ usr/src/debug/pv-1.4.12-1/src/main/version.c
+ usr/src/debug/pv-1.4.12-1/src/pv/cursor.c
+ usr/src/debug/pv-1.4.12-1/src/pv/display.c
+ usr/src/debug/pv-1.4.12-1/src/pv/file.c
+ usr/src/debug/pv-1.4.12-1/src/pv/loop.c
+ usr/src/debug/pv-1.4.12-1/src/pv/number.c
+ usr/src/debug/pv-1.4.12-1/src/pv/signal.c
+ usr/src/debug/pv-1.4.12-1/src/pv/state.c
+ usr/src/debug/pv-1.4.12-1/src/pv/transfer.c
+
+-------------------------------------------------------------------------
+
+Known bugs:
+
+*	The -c option does not work properly on Cygwin without cygserver running,
+	if started near the bottom of the screen (IPC is needed to handle the
+	terminal scrolling). To fix this, start cygserver before using pv -c.
+
+*	The -R option is not available on Cygwin without cygserver running
+	(SYSV IPC is needed). To fix this, start cygserver before running the
+	instance of pv you want, at runtime, to change the parameters of.
+
+-------------------------------------------------------------------------
+
+Cygwin version history:  (For a list of changes in upstream releases,
+see http://www.ivarch.com/programs/pv.shtml)
+
+1.4.12-1:
+* pv version 1.4.12
+* Changed build requirements from gcc-4 to simply gcc
+* Changed in cygport from CC=gcc-4 to simply CC=gcc and CXX=g++-4 to simply CXX=g++
+* Removed previous patch pv-1.4.4-R-man-cyg.patch because the source code is already patched.
+* First version to have both x86 and x86_64.
+
+1.4.4-1:
+* pv version 1.4.4
+* Removed --disable-ipc from CYGCONF_ARGS in cygport file because now pv can run without cygserver.
+* Added patch pv-1.4.4-R-man-cyg.patch to display a warning in the man page in the BUGS section about the
+	usage of -R option with Cygwin.
+
+1.3.9-2:
+* Added --disable-ipc to CYGCONF_ARGS in cygport file
+
+1.3.9-1:
+* pv version 1.3.9
+
+1.3.4-1:
+* pv version 1.3.4
+* First upstream release
+* First Cygwin maintainer

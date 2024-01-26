@@ -1,0 +1,58 @@
+colordiff-1.0.9-1
+-----------------------------------------
+A wrapper for 'diff' that produces the same output but with pretty
+syntax highlighting.
+
+Runtime requirements:
+  cygwin-1.7.4-1
+  perl-5.10.1-3
+
+Build requirements:
+  all of the above
+  cygport-0.9.81
+
+Canonical homepage:
+  http://colordiff.sourceforge.net/
+
+Canonical download:
+  http://colordiff.sourceforge.net/colordiff-1.0.9.tar.gz
+
+License:
+  GPL
+
+Language:
+  Perl
+
+------------------------------------
+
+Build instructions:
+  unpack colordiff-1.0.9-1-src.tar.bz2
+    if you use setup to install this src package, it will be
+         unpacked under /usr/src automatically
+  cd /usr/src
+  cygport ./colordiff-1.0.9-1.cygport all
+
+This will create:
+  /usr/src/colordiff-1.0.9-1.tar.bz2
+  /usr/src/colordiff-1.0.9-1-src.tar.bz2
+
+To find out the files included in the binary distribution, you can
+use "cygcheck -l colordiff", or browse the listing for the appropriate version
+at <http://cygwin.com/packages/>.
+
+------------------
+
+Port Notes:
+
+----------  colordiff-1.0.9-1 -- 2010-04-17 -----------
+New upstream version
+
+----------  colordiff-1.0.7-1 -- 2008-02-21 -----------
+Initial release
+
+For more information about this package, see the upstream documentation in
+/usr/share/doc/colordiff.
+
+Cygwin port maintained by: Kostya Altukhov <kacygwinlist@gmail.com>
+Please address all questions to the Cygwin mailing list at <cygwin@cygwin.com>
+
